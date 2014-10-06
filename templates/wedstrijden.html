@@ -1,0 +1,11 @@
+<table class="games">
+{loop="data"}
+  <tr>
+    <td>{$value->Datum}</td>
+    <td>{$value->Tijd}</td>
+    <td>{$value->ThuisClub} - {$value->UitClub}</td>
+    <td>{if="$value->PuntenTeam1"}{$value->PuntenTeam1} - {$value->PuntenTeam2}{/if}</td>
+    <td>{$value->Zaalveld}</td>
+  </tr>
+{/loop}
+</table>

@@ -1,0 +1,10 @@
+<table class="schedule">
+{loop="data"}
+  <tr>
+    <td>{$value->WedstrijdNummer}</td>
+    <td>{$value->Datum}</td>
+    <td>{$value->Tijd}</td>
+    <td>{$value->ThuisClub} - {$value->UitClub}</td>
+  </tr>
+{/loop}
+</table>
