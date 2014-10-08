@@ -1,9 +1,14 @@
+{if="$data"}
 <table class="teams">
+  <tr>
+    <th>Team ID</th>
+    <th>Naam</th>
+  </tr>
 {loop="data"}
   <tr>
-    <td>{$key}</td>
-    <td>{$value->teamname}</td>
     <td>{$value->teamid}</td>
+    <td>{$value->teamname}</td>
   </tr>
 {/loop}
 </table>
+{/if}
