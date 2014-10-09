@@ -43,3 +43,9 @@ Toon alle wedstrijden van week `42`
 ```
 [knvb uri="/wedstrijden" extra="weeknummer=42"]
 ```
+
+Toon de stand van het team met ID `106698`
+
+```
+[knvb uri="/teams/106698/ranking"]
+```
