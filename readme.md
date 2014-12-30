@@ -2,6 +2,12 @@
 
 Met behulp van deze basis kun je in WordPress gebruik maken van de shortcodes:
 
+Toon resultaten, standen en programma's van diverse team-ID's
+
+```
+[knvbteam list="106698;106699"]
+```
+
 Toon alle teams met bijbehorende ID's
 
 ```

@@ -22,13 +22,41 @@ function knvb_shortcode($atts) {
 
   extract(shortcode_atts(array(
     'uri' => 'uri',
-    'extra' => 'extra'
+    'extra' => 'extra',
   ), $atts));
 
   return '<div class="knvb">'.$client->getData($uri, $extra).'</div>';
 }
 
 add_shortcode("knvb", "knvb_shortcode");
+
+/***********************************************************************
+ Registreer [knvbteam ...]
+ */
+function knvbteam_shortcode($atts) {
+  $client = new KnvbClient(get_option('knvb_api_key'),
+                           get_option('knvb_api_pathname'),
+                           get_option('knvb_api_clubname'));
+
+  extract(shortcode_atts(array(
+    'list' => 'list',
+  ), $atts));
+
+  $output = '';
+  if(isset($list) && count(explode(';', $list)) > 0) {
+    foreach(explode(';', $list) as $teamId) {
+      $output = $output.'<div class="team">';
+      $output = $output.'<div class="team-results">'.$client->getData('/teams/'.$teamId.'/results', 'weeknummer=A').'</div>';
+      $output = $output.'<div class="team-ranking">'.$client->getData('/teams/'.$teamId.'/ranking').'</div>';
+      $output = $output.'<div class="team-schedule">'.$client->getData('/teams/'.$teamId.'/schedule', 'weeknummer=A').'</div>';
+      $output = $output.'</div>';
+    }
+  }
+
+  return '<div class="knvbteam">'.$output.'</div>';
+}
+
+add_shortcode("knvbteam", "knvbteam_shortcode");
 
 /***********************************************************************
  Voeg een optie-scherm toe
@@ -83,7 +111,7 @@ function knvb_api_options() {
   <h2>Alle teams</h2>
   <?php
     $client = new KnvbClient(get_option('knvb_api_key'), get_option('knvb_api_pathname'), get_option('knvb_api_clubname'));
-    $knvb_data = trim($client->getData('/teams', false));
+    $knvb_data = trim($client->getData('/teams', null, false));
 
     if(!empty($knvb_data)) {
       $dt = new DateTime('now');
