@@ -24,6 +24,7 @@ Toon alle wedstrijden
 
 ```
 [knvb uri="/wedstrijden" extra="weeknummer=A"]
+```
 
 Toon alle wedstrijden, thuis- en uitwedstrijden gesplitst
 
