@@ -83,7 +83,7 @@ function knvb_api_options() {
   <h2>Alle teams</h2>
   <?php
     $client = new KnvbClient(get_option('knvb_api_key'), get_option('knvb_api_pathname'), get_option('knvb_api_clubname'));
-    $knvb_data = trim($client->getData('/wedstrijden', false, 'weeknummer=A&thuis=1'));
+    $knvb_data = trim($client->getData('/teams', false, 'weeknummer=A&thuis=1'));
 
     if(!empty($knvb_data)) {
       $dt = new DateTime('now');
