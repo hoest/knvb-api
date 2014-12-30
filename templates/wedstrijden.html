@@ -1,11 +1,52 @@
-<table class="games">
-{loop="data"}
+<table class="games thuis">
+{if="isset($thuis) || isset($uit)"}
   <tr>
-    <td>{$value->Datum|substr:8,2}-{$value->Datum|substr:5,2}-{$value->Datum|substr:0,4}</td>
-    <td>{$value->Tijd|substr:0,2}:{$value->Tijd|substr:2,2}</td>
-    <td>{$value->ThuisClub} - {$value->UitClub}</td>
-    <td>{if="$value->PuntenTeam1"}{$value->PuntenTeam1} - {$value->PuntenTeam2}{/if}</td>
-    <td>{$value->Zaalveld}</td>
+    <th colspan="5">Thuis</th>
   </tr>
-{/loop}
+  {loop="thuis"}
+    <tr>
+      <td>{$value->Datum|substr:8,2}-{$value->Datum|substr:5,2}-{$value->Datum|substr:0,4}</td>
+      <td>{$value->Tijd|substr:0,2}:{$value->Tijd|substr:2,2}</td>
+      <td>{$value->ThuisClub} - {$value->UitClub}</td>
+      <td>{if="$value->PuntenTeam1"}{$value->PuntenTeam1} - {$value->PuntenTeam2}{/if}</td>
+      <td>{$value->Zaalveld}</td>
+    </tr>
+  {else}
+    <tr>
+      <td colspan="5">Momenteel is er geen thuis-wedstrijdenoverzicht beschikbaar.</td>
+    </tr>
+  {/loop}
+</table>
+<table class="games uit">
+  <tr>
+    <th colspan="5">Uit</th>
+  </tr>
+  {loop="uit"}
+    <tr>
+      <td>{$value->Datum|substr:8,2}-{$value->Datum|substr:5,2}-{$value->Datum|substr:0,4}</td>
+      <td>{$value->Tijd|substr:0,2}:{$value->Tijd|substr:2,2}</td>
+      <td>{$value->ThuisClub} - {$value->UitClub}</td>
+      <td>{if="$value->PuntenTeam1"}{$value->PuntenTeam1} - {$value->PuntenTeam2}{/if}</td>
+      <td>{$value->Zaalveld}</td>
+    </tr>
+  {else}
+    <tr>
+      <td colspan="5">Momenteel is er geen uit-wedstrijdenoverzicht beschikbaar.</td>
+    </tr>
+  {/loop}
+{else}
+  {loop="data"}
+    <tr>
+      <td>{$value->Datum|substr:8,2}-{$value->Datum|substr:5,2}-{$value->Datum|substr:0,4}</td>
+      <td>{$value->Tijd|substr:0,2}:{$value->Tijd|substr:2,2}</td>
+      <td>{$value->ThuisClub} - {$value->UitClub}</td>
+      <td>{if="$value->PuntenTeam1"}{$value->PuntenTeam1} - {$value->PuntenTeam2}{/if}</td>
+      <td>{$value->Zaalveld}</td>
+    </tr>
+  {else}
+    <tr>
+      <td>Momenteel is er geen wedstrijdenoverzicht beschikbaar.</td>
+    </tr>
+  {/loop}
+{/if}
 </table>

@@ -6,5 +6,9 @@
     <td>{$value->Tijd|substr:0,2}:{$value->Tijd|substr:2,2}</td>
     <td>{$value->ThuisClub} - {$value->UitClub}</td>
   </tr>
+{else}
+  <tr>
+    <td>Momenteel is er geen programma beschikbaar.</td>
+  </tr>
 {/loop}
 </table>

@@ -10,5 +10,9 @@
     <td class="points" title="Punten">{$value->Punten}</td>
     <td>({$value->DoelpuntenVoor} - {$value->DoelpuntenTegen})</td>
   </tr>
+{else}
+  <tr>
+    <td>Momenteel is er geen stand beschikbaar.</td>
+  </tr>
 {/loop}
 </table>
