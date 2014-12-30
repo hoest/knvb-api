@@ -1,0 +1,15 @@
+<table class="results">
+{loop="data"}
+  <tr>
+    <td>{$value->WedstrijdNummer}</td>
+    <td>{$value->Datum|substr:8,2}-{$value->Datum|substr:5,2}-{$value->Datum|substr:0,4}</td>
+    <td>{$value->Tijd|substr:0,2}:{$value->Tijd|substr:2,2}</td>
+    <td>{$value->ThuisClub} - {$value->UitClub}</td>
+    <td>{$value->PuntenTeam1} - {$value->PuntenTeam2}</td>
+  </tr>
+{else}
+  <tr>
+    <td>Momenteel zijn er geen uitslagen beschikbaar.</td>
+  </tr>
+{/loop}
+</table>

@@ -1,0 +1,23 @@
+{if="$data"}
+<table class="teams">
+  <tr>
+    <th align="left">Team ID</th>
+    <th align="left">Naam</th>
+    <th align="left">Voorbeeld programma-/uitslagen-tag</th>
+  </tr>
+{loop="data"}
+  <tr>
+    <td width="25%" valign="top"><p>{$value->teamid}</p></td>
+    <td width="25%" valign="top"><p>{$value->teamname}</p></td>
+    <td width="50%" valign="top">
+      <pre>[knvb uri="/teams/{$value->teamid}/schedule"]</pre>
+      <pre>[knvb uri="/teams/{$value->teamid}/results"]</pre>
+    </td>
+  </tr>
+{else}
+  <tr>
+    <td colspan="3">Momenteel zijn er geen teams beschikbaar.</td>
+  </tr>
+{/loop}
+</table>
+{/if}
