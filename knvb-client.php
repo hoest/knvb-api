@@ -92,11 +92,13 @@ class KnvbClient {
       // logica voor thuisclub eerst in overzichten als 'thuis=1' in $extra zit
       if(isset($list) && strpos($extra, 'thuis=1') !== false) {
         $thuis = array_filter($list, function($row) {
-          return (isset($row->ThuisClub) && substr($row->ThuisClub, 0, 7) === $this->clubName);
+          $length = strlen($this->clubName);
+          return (isset($row->ThuisClub) && substr($row->ThuisClub, 0, $length) === $this->clubName);
         });
 
         $uit = array_filter($list, function($row) {
-          return (isset($row->ThuisClub) && substr($row->UitClub, 0, 7) === $this->clubName);
+          $length = strlen($this->clubName);
+          return (isset($row->ThuisClub) && substr($row->UitClub, 0, $length) === $this->clubName);
         });
 
         if(count($thuis) > 0 && count($uit) > 0) {
