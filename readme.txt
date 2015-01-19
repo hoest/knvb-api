@@ -1,9 +1,10 @@
-=== Plugin Name ===
+=== KNVB Api plugin ===
 Contributors: hoest
 Donate link: http://www.hoest.nl/
-Tags: knvb, voetbal, api, soccer, dutch,
+Tags: knvb, voetbal, api, soccer, dutch
+Requires at least: 3.0.1
 Tested up to: 4.1
-Stable tag: 4.3
+Stable tag: 1.1
 
 This plugin can be used for Dutch football clubs with a WordPress wedsite and a API-key for the KNVB data-API: http://www.knvbdataservice.nl/
 
@@ -11,28 +12,21 @@ This plugin can be used for Dutch football clubs with a WordPress wedsite and a 
 
 Show teams:
 
-```
-[knvb uri="/teams"]
-```
+`[knvb uri="/teams"]`
 
 Show results for the team with ID `106698`
 
-```
-[knvb uri="/teams/106698/results"]
-```
+`[knvb uri="/teams/106698/results"]`
 
 Show schedule for the team with ID `106698`
 
-```
-[knvb uri="/teams/106698/schedule"]
-```
+`[knvb uri="/teams/106698/schedule"]`
 
 Show all games
 
-```
-[knvb uri="/wedstrijden" extra="weeknummer=A"]
+`[knvb uri="/wedstrijden" extra="weeknummer=A"]`
 
-More info at https://github.com/hoest/knvb-api/blob/master/readme.md
+More info at [GitHub](https://github.com/hoest/knvb-api/blob/master/readme.md)
 
 == Installation ==
 
@@ -41,10 +35,20 @@ More info at https://github.com/hoest/knvb-api/blob/master/readme.md
 
 == Frequently Asked Questions ==
 
+None
+
 == Screenshots ==
+
+None
 
 == Changelog ==
 
+None
+
 == Upgrade Notice ==
 
+None
+
 == Arbitrary section ==
+
+None
