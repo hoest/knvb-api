@@ -31,7 +31,8 @@ More info at [GitHub](https://github.com/hoest/knvb-api/blob/master/readme.md)
 == Installation ==
 
 1. Upload the plugin-folder to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
+2. The plugin need to create a `./cache/` folder with files: `chmod 777`
+3. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently Asked Questions ==
 
