@@ -48,6 +48,11 @@ Toon alle wedstrijden van deze week
 
 ```
 [knvb uri="/wedstrijden" extra="weeknummer=C"]
+
+Toon alle wedstrijden van volgende week
+
+```
+[knvb uri="/wedstrijden" extra="weeknummer=N"]
 ```
 
 Toon alle wedstrijden van week `42`

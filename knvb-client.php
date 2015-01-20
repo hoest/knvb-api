@@ -68,8 +68,13 @@ class KnvbClient {
   public function getData($url_path = '/teams', $extra = null, $useCache = true) {
     $wn_current = ltrim(date('W'), '0');
     $wn_previous = ltrim(date('W', strtotime('-7 days')), '0');
-    $extra = str_replace(array('weeknummer=C', 'weeknummer=P'),
-                         array('weeknummer='.$wn_current, 'weeknummer='.$wn_previous),
+    $wn_next = ltrim(date('W', strtotime('+7 days')), '0');
+    $extra = str_replace(array('weeknummer=C',
+                               'weeknummer=P',
+                               'weeknummer=N'),
+                         array('weeknummer='.$wn_current,
+                               'weeknummer='.$wn_previous,
+                               'weeknummer='.$wn_next),
                          $extra);
     $pluginFolder = dirname(__FILE__);
 
