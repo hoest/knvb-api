@@ -6,6 +6,7 @@
     <td>{$value->Tijd|substr:0,2}:{$value->Tijd|substr:2,2}</td>
     <td>{$value->ThuisClub} - {$value->UitClub}</td>
     <td>{$value->PuntenTeam1} - {$value->PuntenTeam2}</td>
+    <td>{if="$value->Bijzonderheden"}{$value->Bijzonderheden}{/if}</td>
   </tr>
 {else}
   <tr>
