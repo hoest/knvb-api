@@ -1,7 +1,7 @@
 <table class="games thuis">
 {if="isset($thuis) || isset($uit)"}
   <tr>
-    <th colspan="5">Thuis</th>
+    <th colspan="6">Thuis</th>
   </tr>
   {loop="thuis"}
     <tr>
@@ -14,13 +14,13 @@
     </tr>
   {else}
     <tr>
-      <td colspan="5">Momenteel is er geen thuis-wedstrijdenoverzicht beschikbaar.</td>
+      <td colspan="6">Momenteel is er geen thuis-wedstrijdenoverzicht beschikbaar.</td>
     </tr>
   {/loop}
 </table>
 <table class="games uit">
   <tr>
-    <th colspan="5">Uit</th>
+    <th colspan="6">Uit</th>
   </tr>
   {loop="uit"}
     <tr>
@@ -33,7 +33,7 @@
     </tr>
   {else}
     <tr>
-      <td colspan="5">Momenteel is er geen uit-wedstrijdenoverzicht beschikbaar.</td>
+      <td colspan="6">Momenteel is er geen uit-wedstrijdenoverzicht beschikbaar.</td>
     </tr>
   {/loop}
 {else}
