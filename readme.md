@@ -66,3 +66,28 @@ Toon de stand van het team met ID `106698`
 ```
 [knvb uri="/teams/106698/ranking"]
 ```
+
+Om een simpele slider te tonen van een team met als eerste de eerstvolgende
+wedstrijd en vervolgens alle vorige wedstrijden met uitslagen, dan kun je
+dit bereiken door het volgende op te nemen in je template code:
+
+Je moet wel al [jQuery](http://www.jquery.com/) gebruiken in je template, anders
+zul je deze nog even moet opnemen in je template.
+
+Voeg daarnaast deze CSS toe aan je template:
+
+```html
+<link rel="stylesheet" type="text/css" href="/wp-content/plugins/knvb-api/slider.css" />
+```
+
+Dit JavaScript bestand:
+
+```html
+<script src="/wp-content/plugins/knvb-api/slider.js"></script>
+```
+
+Vervolgens kun je met deze shortcode de slider plaatsen:
+
+```
+[knvbteam-slider id="106698"]
+```
