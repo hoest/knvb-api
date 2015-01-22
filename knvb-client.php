@@ -77,6 +77,7 @@ class KnvbClient {
                                'weeknummer='.$wn_next),
                          $extra);
     $pluginFolder = dirname(__FILE__);
+    $template_file = basename($url_path);
 
     RainTPL::configure('base_url', null);
     RainTPL::configure('tpl_dir', $pluginFolder.'/templates/');
@@ -94,8 +95,13 @@ class KnvbClient {
     else {
       $list = $this->doRequest($url_path, $extra);
 
-      // logica voor thuisclub eerst in overzichten als 'thuis=1' in $extra zit
+      if(isset($list) && strpos($extra, 'slider=1') !== false) {
+        // logica voor de slider: 'slider=1'
+        $template_file = $template_file.'_slider';
+      }
+
       if(isset($list) && strpos($extra, 'thuis=1') !== false) {
+        // logica voor thuisclub eerst in overzichten als 'thuis=1' in $extra zit
         $thuis = array_filter($list, function($row) {
           $length = strlen($this->clubName);
           return (isset($row->ThuisClub) && substr($row->ThuisClub, 0, $length) === $this->clubName);
@@ -114,7 +120,7 @@ class KnvbClient {
         $tpl->assign('data', $list);
       }
 
-      return $tpl->draw(basename($url_path), $return_string = true);
+      return $tpl->draw($template_file, $return_string = true);
     }
   }
 }

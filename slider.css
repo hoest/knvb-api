@@ -1,0 +1,17 @@
+.knvbteam-slider .prev,
+.knvbteam-slider .game,
+.knvbteam-slider .next {
+  float:left;
+}
+
+.knvbteam-slider .prev {
+  margin-right: 1em;
+}
+
+.knvbteam-slider .next {
+  margin-left: 1em;
+}
+
+.knvbteam-slider .game div {
+  text-align: center;
+}
