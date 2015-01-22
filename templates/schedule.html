@@ -1,10 +1,12 @@
 <table class="schedule">
 {loop="data"}
   <tr>
-    <td>{$value->WedstrijdNummer}</td>
     <td>{$value->Datum|substr:8,2}-{$value->Datum|substr:5,2}-{$value->Datum|substr:0,4}</td>
     <td>{$value->Tijd|substr:0,2}:{$value->Tijd|substr:2,2}</td>
-    <td>{$value->ThuisClub} - {$value->UitClub}</td>
+    {if="$logo"}<td>{if="$value->ThuisLogo"}<img alt="Clublogo van {$value->ThuisClub}" src="{$value->ThuisLogo}" />{/if}</td>{/if}
+    <td>{$value->ThuisClub}</td>
+    {if="$logo"}<td>{if="$value->UitLogo"}<img alt="Clublogo van {$value->UitClub}" src="{$value->UitLogo}" />{/if}</td>{/if}
+    <td>{$value->UitClub}</td>
     <td>{if="$value->Bijzonderheden"}{$value->Bijzonderheden}{/if}</td>
   </tr>
 {else}

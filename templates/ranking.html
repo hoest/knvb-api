@@ -1,7 +1,8 @@
 <table class="ranking">
-{loop="data"}
+{loop="$data"}
   <tr{if="substr($value->naam, 0, 4) == 'VVZ '"} class="self"{/if}>
     <td>{$value->Positie}</td>
+    {if="$logo"}<td>{if="$value->logo"}<img alt="Clublogo van {$value->naam}" src="{$value->logo}" />{/if}</td>{/if}
     <td>{$value->naam}</td>
     <td class="played" title="Gespeeld">{$value->Gespeeld}</td>
     <td class="won" title="Gewonnen">{$value->Gewonnen}</td>
