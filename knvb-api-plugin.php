@@ -71,8 +71,8 @@ function knvbteam_slider_shortcode($atts) {
 
   $output = '';
   if(isset($id)) {
-    $output = $output.$client->getData('/teams/'.$id.'/schedule', 'weeknummer=C&slider=1', false);
-    $output = $output.$client->getData('/teams/'.$id.'/results', 'weeknummer=A&slider=1', false);
+    $output = $output.$client->getData('/teams/'.$id.'/schedule', 'weeknummer=C&slider=1');
+    $output = $output.$client->getData('/teams/'.$id.'/results', 'weeknummer=A&slider=1');
   }
 
   return '<div class="knvbteam-slider">'.$output.'</div>';
