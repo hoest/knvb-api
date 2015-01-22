@@ -48,6 +48,7 @@ Toon alle wedstrijden van deze week
 
 ```
 [knvb uri="/wedstrijden" extra="weeknummer=C"]
+```
 
 Toon alle wedstrijden van volgende week
 
@@ -90,4 +91,11 @@ Vervolgens kun je met deze shortcode de slider plaatsen:
 
 ```
 [knvbteam-slider id="106698"]
+```
+
+Wanneer je de logo's van de teams wilt tonen in een bepaald overzicht, dan
+vul je in het `extra` attribuut `logo=1` toe. Bijvoorbeeld:
+
+```
+[knvb uri="/wedstrijden" extra="weeknummer=A&logo=1"]
 ```

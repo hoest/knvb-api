@@ -79,26 +79,28 @@ class KnvbClient {
     $pluginFolder = dirname(__FILE__);
     $template_file = basename($url_path);
 
+    if(strpos($extra, 'slider=1') !== false) {
+      // logica voor de slider: 'slider=1'
+      $template_file = $template_file.'_slider';
+    }
+
     RainTPL::configure('base_url', null);
     RainTPL::configure('tpl_dir', $pluginFolder.'/templates/');
     RainTPL::configure('cache_dir', $pluginFolder.'/cache/');
+    RainTPL::configure('path_replace', false);
 
     $tpl = new RainTPL;
 
     // standaard 15 minuten cache
     $cache_key = sanitize_file_name($url_path.'_'.$extra);
-    if($useCache && $cache = $tpl->cache(basename($url_path),
+    if($useCache && $cache = $tpl->cache($template_file,
                                          $expire_time = 900,
                                          $cache_id = $cache_key)) {
       return $cache;
     }
     else {
       $list = $this->doRequest($url_path, $extra);
-
-      if(isset($list) && strpos($extra, 'slider=1') !== false) {
-        // logica voor de slider: 'slider=1'
-        $template_file = $template_file.'_slider';
-      }
+      $tpl->assign('logo', strpos($extra, 'logo=1') !== false);
 
       if(isset($list) && strpos($extra, 'thuis=1') !== false) {
         // logica voor thuisclub eerst in overzichten als 'thuis=1' in $extra zit

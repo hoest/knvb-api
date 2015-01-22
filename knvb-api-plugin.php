@@ -3,7 +3,7 @@
  * Plugin Name: KNVB Api
  * Plugin URI: http://www.hoest.nl
  * Description: A plugin to use the KNVB Data API
- * Version: 1.3
+ * Version: 1.4
  * Author: Jelle de Jong
  * Author URI: http://www.hoest.nl
  * */
@@ -67,12 +67,13 @@ function knvbteam_slider_shortcode($atts) {
 
   extract(shortcode_atts(array(
     'id' => 'id',
+    'extra' => 'extra',
   ), $atts));
 
   $output = '';
   if(isset($id)) {
-    $output = $output.$client->getData('/teams/'.$id.'/schedule', 'weeknummer=C&slider=1', false);
-    $output = $output.$client->getData('/teams/'.$id.'/results', 'weeknummer=A&slider=1', false);
+    $output = $output.$client->getData('/teams/'.$id.'/schedule', 'weeknummer=C&slider=1&'.$extra);
+    $output = $output.$client->getData('/teams/'.$id.'/results', 'weeknummer=A&slider=1&'.$extra);
   }
 
   return '<div class="knvbteam-slider">'.$output.'</div>';
@@ -132,13 +133,30 @@ function knvb_api_options() {
 
   <h2>Alle teams</h2>
   <?php
+    $cache_folder = plugin_dir_path(__FILE__).'cache/';
+
+    // create cache folder
+    if (!file_exists($cache_folder)) {
+      mkdir($cache_folder, 0777);
+    }
+
+    // emtpy cache folder
+    $files = glob($cache_folder.'*.rtpl.php'); // get all file names
+    foreach($files as $file) { // iterate files
+      if(is_file($file)) {
+        unlink($file); // delete file
+        echo '<p>Cache removed: <code>'.$file.'</code></p>';
+      }
+    }
+
+    // create a client and receive data
     $client = new KnvbClient(get_option('knvb_api_key'), get_option('knvb_api_pathname'), get_option('knvb_api_clubname'));
     $knvb_data = trim($client->getData('/teams', null, false));
 
     if(!empty($knvb_data)) {
       $dt = new DateTime('now');
       $dt->setTimezone(new DateTimeZone('Europe/Amsterdam'));
-      echo '<p><em>Vernieuwd op '.$dt->format('d-m-Y \o\m H:i:s').'</em></p>';
+      echo '<p><em>Cache geleegd en data vernieuwd op '.$dt->format('d-m-Y \o\m H:i:s').'</em></p>';
       echo $knvb_data;
     }
     else {
