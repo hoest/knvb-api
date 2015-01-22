@@ -3,7 +3,7 @@
  * Plugin Name: KNVB Api
  * Plugin URI: http://www.hoest.nl
  * Description: A plugin to use the KNVB Data API
- * Version: 1.2.1
+ * Version: 1.3
  * Author: Jelle de Jong
  * Author URI: http://www.hoest.nl
  * */
@@ -56,6 +56,29 @@ function knvbteam_shortcode($atts) {
 }
 
 add_shortcode("knvbteam", "knvbteam_shortcode");
+
+/***********************************************************************
+ Registreer [knvbteam-slider ...]
+ */
+function knvbteam_slider_shortcode($atts) {
+  $client = new KnvbClient(get_option('knvb_api_key'),
+                           get_option('knvb_api_pathname'),
+                           get_option('knvb_api_clubname'));
+
+  extract(shortcode_atts(array(
+    'id' => 'id',
+  ), $atts));
+
+  $output = '';
+  if(isset($id)) {
+    $output = $output.$client->getData('/teams/'.$id.'/schedule', 'weeknummer=C&slider=1', false);
+    $output = $output.$client->getData('/teams/'.$id.'/results', 'weeknummer=A&slider=1', false);
+  }
+
+  return '<div class="knvbteam-slider">'.$output.'</div>';
+}
+
+add_shortcode("knvbteam-slider", "knvbteam_slider_shortcode");
 
 /***********************************************************************
  Voeg een optie-scherm toe

@@ -1,0 +1,8 @@
+{loop="data"}
+  <div class="game">
+    <div class="datetime">{$value->Datum|substr:8,2}-{$value->Datum|substr:5,2}-{$value->Datum|substr:0,4} om {$value->Tijd|substr:0,2}:{$value->Tijd|substr:2,2}</div>
+    <div class="match">{$value->ThuisClub} - {$value->UitClub}</div>
+    <div class="score">{$value->PuntenTeam1} - {$value->PuntenTeam2}</div>
+    {if="$value->Bijzonderheden"}<div class="extra">{$value->Bijzonderheden}</div>{/if}
+  </div>
+{/loop}
