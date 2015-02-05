@@ -1,48 +1,94 @@
-<table class="games thuis">
 {if="isset($thuis) || isset($uit)"}
-  <tr>
-    <th colspan="{if="$logo"}9{else}7{/if}">Thuis</th>
-  </tr>
-  {loop="thuis"}
-    <tr>
-      <td>{$value->Datum|substr:8,2}-{$value->Datum|substr:5,2}-{$value->Datum|substr:0,4}</td>
-      <td>{$value->Tijd|substr:0,2}:{$value->Tijd|substr:2,2}</td>
-      {if="$logo"}<td>{if="$value->ThuisLogo"}<img alt="Clublogo van {$value->ThuisClub}" src="{$value->ThuisLogo}" />{/if}</td>{/if}
-      <td>{$value->ThuisClub}</td>
-      {if="$logo"}<td>{if="$value->UitLogo"}<img alt="Clublogo van {$value->UitClub}" src="{$value->UitLogo}" />{/if}</td>{/if}
-      <td>{$value->UitClub}</td>
-      <td>{if="$value->PuntenTeam1"}{$value->PuntenTeam1} - {$value->PuntenTeam2}{/if}</td>
-      <td>{$value->Zaalveld}</td>
-      <td>{if="$value->Bijzonderheden"}{$value->Bijzonderheden}{/if}</td>
-    </tr>
-  {else}
-    <tr>
-      <td colspan="{if="$logo"}9{else}7{/if}">Momenteel is er geen thuis-wedstrijdenoverzicht beschikbaar.</td>
-    </tr>
-  {/loop}
-</table>
-<table class="games uit">
-  <tr>
-    <th colspan="{if="$logo"}9{else}7{/if}">Uit</th>
-  </tr>
-  {loop="uit"}
-    <tr>
-      <td>{$value->Datum|substr:8,2}-{$value->Datum|substr:5,2}-{$value->Datum|substr:0,4}</td>
-      <td>{$value->Tijd|substr:0,2}:{$value->Tijd|substr:2,2}</td>
-      {if="$logo"}<td>{if="$value->ThuisLogo"}<img alt="Clublogo van {$value->ThuisClub}" src="{$value->ThuisLogo}" />{/if}</td>{/if}
-      <td>{$value->ThuisClub}</td>
-      {if="$logo"}<td>{if="$value->UitLogo"}<img alt="Clublogo van {$value->UitClub}" src="{$value->UitLogo}" />{/if}</td>{/if}
-      <td>{$value->UitClub}</td>
-      <td>{if="$value->PuntenTeam1"}{$value->PuntenTeam1} - {$value->PuntenTeam2}{/if}</td>
-      <td>{$value->Zaalveld}</td>
-      <td>{if="$value->Bijzonderheden"}{$value->Bijzonderheden}{/if}</td>
-    </tr>
-  {else}
-    <tr>
-      <td colspan="{if="$logo"}9{else}7{/if}">Momenteel is er geen uit-wedstrijdenoverzicht beschikbaar.</td>
-    </tr>
-  {/loop}
+  {if="isset($thuis)"}
+    <table class="games thuis">
+      <tr>
+        <th colspan="{if="$logo"}9{else}7{/if}">Thuis</th>
+      </tr>
+      {loop="thuis"}
+        <tr>
+          <td>{$value->Datum|substr:8,2}-{$value->Datum|substr:5,2}-{$value->Datum|substr:0,4}</td>
+          <td>{$value->Tijd|substr:0,2}:{$value->Tijd|substr:2,2}</td>
+          {if="$logo"}<td>{if="$value->ThuisLogo"}<img alt="Clublogo van {$value->ThuisClub}" src="{$value->ThuisLogo}" />{/if}</td>{/if}
+          <td>
+            {$value->ThuisClub}
+            {if="$thuisonly && $value->Kleedkamer_thuis"}
+              <span class="kleedkamer"><span class="label">Kleedkamer:</span> {$value->Kleedkamer_thuis}</span>
+            {/if}
+          </td>
+          {if="$logo"}<td>{if="$value->UitLogo"}<img alt="Clublogo van {$value->UitClub}" src="{$value->UitLogo}" />{/if}</td>{/if}
+          <td>
+            {$value->UitClub}
+            {if="$thuisonly && $value->Kleedkamer_uit"}
+              <span class="kleedkamer"><span class="label">Kleedkamer:</span> {$value->Kleedkamer_uit}</span>
+            {/if}
+          </td>
+          <td>{if="$value->PuntenTeam1"}{$value->PuntenTeam1} - {$value->PuntenTeam2}{/if}</td>
+          <td>
+            <span class="zaalveld">{$value->Zaalveld}</span>
+            {if="$value->VeldClub"}
+              &#32;
+              <span class="veld">{$value->VeldClub}</span>
+            {/if}
+          </td>
+          <td>
+            {if="$value->Bijzonderheden"}
+              <span class="bijzonderheden">{$value->Bijzonderheden}</span>
+            {/if}
+          </td>
+        </tr>
+      {else}
+        <tr>
+          <td colspan="{if="$logo"}9{else}7{/if}">Momenteel is er geen thuis-wedstrijdenoverzicht beschikbaar.</td>
+        </tr>
+      {/loop}
+    </table>
+  {/if}
+  {if="isset($uit)"}
+    <table class="games uit">
+      <tr>
+        <th colspan="{if="$logo"}9{else}7{/if}">Uit</th>
+      </tr>
+      {loop="uit"}
+        <tr>
+          <td>{$value->Datum|substr:8,2}-{$value->Datum|substr:5,2}-{$value->Datum|substr:0,4}</td>
+          <td>{$value->Tijd|substr:0,2}:{$value->Tijd|substr:2,2}</td>
+          {if="$logo"}<td>{if="$value->ThuisLogo"}<img alt="Clublogo van {$value->ThuisClub}" src="{$value->ThuisLogo}" />{/if}</td>{/if}
+          <td>
+            {$value->ThuisClub}
+            {if="$uitonly && $value->Kleedkamer_thuis"}
+              <span class="kleedkamer"><span class="label">Kleedkamer:</span> {$value->Kleedkamer_thuis}</span>
+            {/if}
+          </td>
+          {if="$logo"}<td>{if="$value->UitLogo"}<img alt="Clublogo van {$value->UitClub}" src="{$value->UitLogo}" />{/if}</td>{/if}
+          <td>
+            {$value->UitClub}
+            {if="$uitonly && $value->Kleedkamer_uit"}
+              <span class="kleedkamer"><span class="label">Kleedkamer:</span> {$value->Kleedkamer_uit}</span>
+            {/if}
+          </td>
+          <td>{if="$value->PuntenTeam1"}{$value->PuntenTeam1} - {$value->PuntenTeam2}{/if}</td>
+          <td>
+            <span class="zaalveld">{$value->Zaalveld}</span>
+            {if="$value->VeldClub"}
+              &#32;
+              <span class="veld">{$value->VeldClub}</span>
+            {/if}
+          </td>
+          <td>
+            {if="$value->Bijzonderheden"}
+              <span class="bijzonderheden">{$value->Bijzonderheden}</span>
+            {/if}
+          </td>
+        </tr>
+      {else}
+        <tr>
+          <td colspan="{if="$logo"}9{else}7{/if}">Momenteel is er geen uit-wedstrijdenoverzicht beschikbaar.</td>
+        </tr>
+      {/loop}
+    </table>
+  {/if}
 {else}
+  <table class="games uit">
   {loop="data"}
     <tr>
       <td>{$value->Datum|substr:8,2}-{$value->Datum|substr:5,2}-{$value->Datum|substr:0,4}</td>
@@ -60,5 +106,5 @@
       <td>Momenteel is er geen wedstrijdenoverzicht beschikbaar.</td>
     </tr>
   {/loop}
+  </table>
 {/if}
-</table>

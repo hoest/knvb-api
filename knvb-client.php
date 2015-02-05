@@ -79,7 +79,7 @@ class KnvbClient {
     $pluginFolder = dirname(__FILE__);
     $template_file = basename($url_path);
 
-    if(strpos($extra, 'slider=1') !== false) {
+    if(strpos($extra, 'slider=1') > -1) {
       // logica voor de slider: 'slider=1'
       $template_file = $template_file.'_slider';
     }
@@ -100,23 +100,33 @@ class KnvbClient {
     }
     else {
       $list = $this->doRequest($url_path, $extra);
-      $tpl->assign('logo', strpos($extra, 'logo=1') !== false);
 
-      if(isset($list) && strpos($extra, 'thuis=1') !== false) {
+      $tpl->assign('logo', strpos($extra, 'logo=1') > -1);
+      $tpl->assign('thuisonly', strpos($extra, 'thuisonly=1') > -1);
+      $tpl->assign('uitonly', strpos($extra, 'uitonly=1') > -1);
+
+      if(isset($list) && strpos($extra, 'thuis=1') > -1) {
         // logica voor thuisclub eerst in overzichten als 'thuis=1' in $extra zit
-        $thuis = array_filter($list, function($row) {
-          $length = strlen($this->clubName);
-          return (isset($row->ThuisClub) && substr($row->ThuisClub, 0, $length) === $this->clubName);
-        });
+        if(strpos($extra, 'uitonly=1') === false) {
+          $thuis = array_filter($list, function($row) {
+            $length = strlen($this->clubName);
+            return (isset($row->ThuisClub) && substr($row->ThuisClub, 0, $length) === $this->clubName);
+          });
 
-        $uit = array_filter($list, function($row) {
-          $length = strlen($this->clubName);
-          return (isset($row->ThuisClub) && substr($row->UitClub, 0, $length) === $this->clubName);
-        });
+          if(count($thuis) > 0) {
+            $tpl->assign('thuis', $thuis);
+          }
+        }
 
-        if(count($thuis) > 0 && count($uit) > 0) {
-          $tpl->assign('thuis', $thuis);
-          $tpl->assign('uit', $uit);
+        if(strpos($extra, 'thuisonly=1') === false) {
+          $uit = array_filter($list, function($row) {
+            $length = strlen($this->clubName);
+            return (isset($row->ThuisClub) && substr($row->UitClub, 0, $length) === $this->clubName);
+          });
+
+          if(count($uit) > 0) {
+            $tpl->assign('uit', $uit);
+          }
         }
       } else {
         $tpl->assign('data', $list);
