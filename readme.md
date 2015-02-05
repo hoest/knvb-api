@@ -38,6 +38,18 @@ Toon alle wedstrijden, thuis- en uitwedstrijden gesplitst
 [knvb uri="/wedstrijden" extra="weeknummer=A&thuis=1"]
 ```
 
+Toon alleen thuis wedstrijden, met extra informatie (veld en kleedkamer)
+
+```
+[knvb uri="/wedstrijden" extra="weeknummer=A&thuis=1&thuisonly=1"]
+```
+
+Toon alleen uit wedstrijden, met extra informatie (veld en kleedkamer)
+
+```
+[knvb uri="/wedstrijden" extra="weeknummer=A&thuis=1&uitonly=1"]
+```
+
 Toon alle wedstrijden van vorige week
 
 ```
