@@ -59,17 +59,17 @@ class KnvbClient {
     $json_data = json_decode($result);
 
     if(isset($json_data) && property_exists($json_data, 'List')) {
-      usort($json_data->List, function($a, $b) {
-        if(property_exists($a, 'Datum') && property_exists($a, 'Tijd') &&
-           property_exists($b, 'Datum') && property_exists($b, 'Tijd') &&
-           isset($a->Datum) && isset($a->Tijd) &&
-           isset($b->Datum) && isset($b->Tijd)) {
+      if(property_exists($json_data->List[0], 'Datum') &&
+         property_exists($json_data->List[0], 'Tijd') &&
+         isset($json_data->List[0]->Datum) &&
+         isset($json_data->List[0]->Tijd)) {
+        usort($json_data->List, function($a, $b) {
           $dt_a = str_replace('-', '', $a->Datum) . $a->Tijd;
           $dt_b = str_replace('-', '', $b->Datum) . $b->Tijd;
 
           return strcmp($dt_a, $dt_b);
-        }
-      });
+        });
+      }
 
       return $json_data->List;
     }
