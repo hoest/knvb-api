@@ -1,4 +1,4 @@
-(function($) {
+$(function() {
   $(".knvbteam-slider").each(function() {
     var sliderElt = $(this);
     $(".game", sliderElt).hide();
@@ -34,20 +34,20 @@
 
     checkButtonState(sliderElt);
   });
+});
 
-  function checkButtonState(sliderElt) {
-    if($(".game:visible", sliderElt).next(".game").length) {
-      $("a.prev", sliderElt).show();
-    }
-    else {
-      $("a.prev", sliderElt).hide();
-    }
-
-    if($(".game:visible", sliderElt).prev(".game").length) {
-      $("a.next", sliderElt).show();
-    }
-    else {
-      $("a.next", sliderElt).hide();
-    }
+function checkButtonState(sliderElt) {
+  if($(".game:visible", sliderElt).next(".game").length) {
+    $("a.prev", sliderElt).show();
   }
-})(jQuery);
+  else {
+    $("a.prev", sliderElt).hide();
+  }
+
+  if($(".game:visible", sliderElt).prev(".game").length) {
+    $("a.next", sliderElt).show();
+  }
+  else {
+    $("a.next", sliderElt).hide();
+  }
+}

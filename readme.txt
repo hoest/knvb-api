@@ -4,7 +4,7 @@ Donate link: http://www.hoest.nl/
 Tags: knvb, voetbal, api, soccer, dutch
 Requires at least: 3.0.1
 Tested up to: 4.3
-Stable tag: 1.9
+Stable tag: 1.10
 
 This plugin can be used for Dutch football clubs with a WordPress wedsite and a API-key for the KNVB data-API: http://www.knvbdataservice.nl/
 

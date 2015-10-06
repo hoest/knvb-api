@@ -1,17 +1,17 @@
 <table class="schedule">
 {loop="data"}
   <tr>
-    <td>{$value->Datum|substr:8,2}-{$value->Datum|substr:5,2}-{$value->Datum|substr:0,4}</td>
-    <td>{$value->Tijd|substr:0,2}:{$value->Tijd|substr:2,2}</td>
-    {if="$logo"}<td>{if="$value->ThuisLogo"}<img alt="Clublogo van {$value->ThuisClub}" src="{$value->ThuisLogo}" />{/if}</td>{/if}
-    <td>{$value->ThuisClub}</td>
-    {if="$logo"}<td>{if="$value->UitLogo"}<img alt="Clublogo van {$value->UitClub}" src="{$value->UitLogo}" />{/if}</td>{/if}
-    <td>{$value->UitClub}</td>
-    <td>{if="$value->Bijzonderheden"}{$value->Bijzonderheden}{/if}</td>
+    <td class="date">{$value->Datum|substr:8,2}-{$value->Datum|substr:5,2}-{$value->Datum|substr:0,4}</td>
+    <td class="time">{$value->Tijd|substr:0,2}:{$value->Tijd|substr:2,2}</td>
+    {if="$logo"}<td class="home-logo">{if="$value->ThuisLogo"}<img alt="Clublogo van {$value->ThuisClub}" src="{$value->ThuisLogo}" />{/if}</td>{/if}
+    <td class="home-name">{$value->ThuisClub}</td>
+    {if="$logo"}<td class="guest-logo">{if="$value->UitLogo"}<img alt="Clublogo van {$value->UitClub}" src="{$value->UitLogo}" />{/if}</td>{/if}
+    <td class="guest-name">{$value->UitClub}</td>
+    <td class="extra">{if="$value->Bijzonderheden"}{$value->Bijzonderheden}{/if}</td>
   </tr>
 {else}
   <tr>
-    <td>Momenteel is er geen programma beschikbaar.</td>
+    <td class="nothing">Momenteel is er geen programma beschikbaar.</td>
   </tr>
 {/loop}
 </table>

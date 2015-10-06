@@ -1,19 +1,19 @@
 <table class="ranking">
 {loop="$data"}
   <tr{if="substr($value->naam, 0, 4) == 'VVZ '"} class="self"{/if}>
-    <td>{$value->Positie}</td>
-    {if="$logo"}<td>{if="$value->logo"}<img alt="Clublogo van {$value->naam}" src="{$value->logo}" />{/if}</td>{/if}
-    <td>{$value->naam}</td>
+    <td class="position">{$value->Positie}</td>
+    {if="$logo"}<td class="logo">{if="$value->logo"}<img alt="Clublogo van {$value->naam}" src="{$value->logo}" />{/if}</td>{/if}
+    <td class="name">{$value->naam}</td>
     <td class="played" title="Gespeeld">{$value->Gespeeld}</td>
     <td class="won" title="Gewonnen">{$value->Gewonnen}</td>
     <td class="tie" title="Gelijk">{$value->Gelijk}</td>
     <td class="lost" title="Verloren">{$value->Verloren}</td>
     <td class="points" title="Punten">{$value->Punten}</td>
-    <td>({$value->DoelpuntenVoor} - {$value->DoelpuntenTegen})</td>
+    <td class="goals">({$value->DoelpuntenVoor} - {$value->DoelpuntenTegen})</td>
   </tr>
 {else}
   <tr>
-    <td>Momenteel is er geen stand beschikbaar.</td>
+    <td class="nothing">Momenteel is er geen stand beschikbaar.</td>
   </tr>
 {/loop}
 </table>
