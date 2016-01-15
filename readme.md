@@ -68,6 +68,7 @@ Toon de stand van het team met ID `106698`
 [knvb uri="/teams/106698/ranking"]
 ```
 
+## Slider
 Om een simpele slider te tonen van een team met als eerste de eerstvolgende
 wedstrijd en vervolgens alle vorige wedstrijden met uitslagen, dan kun je
 dit bereiken door het volgende op te nemen in je template code:
@@ -93,9 +94,34 @@ Vervolgens kun je met deze shortcode de slider plaatsen:
 [knvbteam-slider id="106698"]
 ```
 
+## Logo's
 Wanneer je de logo's van de teams wilt tonen in een bepaald overzicht, dan
 vul je in het `extra` attribuut `logo=1` toe. Bijvoorbeeld:
 
 ```
 [knvb uri="/wedstrijden" extra="weeknummer=A&logo=1"]
 ```
+
+## Eigen templates
+De `[knvb ...]` shortcode is uit te breiden met een `template="..."`
+attribuut. Voorbeeld:
+
+```
+[knvb uri="/wedstrijden" template="custom"]
+```
+
+Nu zal er gezocht worden naar het template
+`./wp-content/plugins/knvb-api/templates/custom_template.html`. Dit
+template kun je vervolgens zelf opbouwen en plaatsen. Voorbeelden
+voor een template kun je vinden in de map
+`./wp-content/plugins/knvb-api/templates/`. Deze templates kun je niet
+zo maar aanpassen, aangezien ze standaard meegeleverd worden met de
+release:
+
+* \templates\ranking.html
+* \templates\results.html
+* \templates\results_slider.html
+* \templates\schedule.html
+* \templates\schedule_slider.html
+* \templates\teams.html
+* \templates\wedstrijden.html

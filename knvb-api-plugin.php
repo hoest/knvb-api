@@ -3,7 +3,7 @@
  * Plugin Name: KNVB Api
  * Plugin URI: http://www.hoest.nl
  * Description: A plugin to use the KNVB Data API
- * Version: 1.10
+ * Version: 1.11
  * Author: Jelle de Jong
  * Author URI: http://www.hoest.nl
  * */
