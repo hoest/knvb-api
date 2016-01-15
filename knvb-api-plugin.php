@@ -22,9 +22,10 @@ function knvb_shortcode($atts) {
   extract(shortcode_atts(array(
     'uri' => 'uri',
     'extra' => 'extra',
+    'template' => 'template',
   ), $atts));
 
-  return '<div class="knvb">'.$client->getData($uri, $extra).'</div>';
+  return '<div class="knvb">'.$client->getData($uri, $extra, $template).'</div>';
 }
 
 add_shortcode("knvb", "knvb_shortcode");

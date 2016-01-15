@@ -38,7 +38,7 @@ class KnvbClient {
     $this->session_id = $json_data->List[0]->PHPSESSID;
   }
 
-  public function doRequest($url_path = '/teams', $extra = null) {
+  public function doRequest($url_path = '/teams', $extra = NULL) {
     $hash = md5($this->apiKey.'#'.$url_path.'#'.$this->session_id);
 
     // voer de 'echte' request uit
@@ -74,10 +74,10 @@ class KnvbClient {
       return $json_data->List;
     }
 
-    return null;
+    return NULL;
   }
 
-  public function getData($url_path = '/teams', $extra = null, $useCache = true) {
+  public function getData($url_path = '/teams', $extra = NULL, $template_file = NULL, $useCache = true) {
     $wn_current = ltrim(date('W'), '0');
     $wn_previous = ltrim(date('W', strtotime('-7 days')), '0');
     $wn_next = ltrim(date('W', strtotime('+7 days')), '0');
@@ -89,14 +89,17 @@ class KnvbClient {
                                'weeknummer='.$wn_next),
                          $extra);
     $pluginFolder = dirname(__FILE__);
-    $template_file = basename($url_path);
 
-    if(strpos($extra, 'slider=1') > -1) {
-      // logica voor de slider: 'slider=1'
-      $template_file = $template_file.'_slider';
+    if(!isset($template_file) || $template_file == 'template') {
+      $template_file = basename($url_path);
+
+      if(strpos($extra, 'slider=1') > -1) {
+        // logica voor de slider: 'slider=1'
+        $template_file = $template_file.'_slider';
+      }
     }
 
-    RainTPL::configure('base_url', null);
+    RainTPL::configure('base_url', NULL);
     RainTPL::configure('tpl_dir', $pluginFolder.'/templates/');
     RainTPL::configure('cache_dir', $pluginFolder.'/cache/');
     RainTPL::configure('path_replace', false);
