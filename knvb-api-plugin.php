@@ -152,7 +152,7 @@ function knvb_api_options() {
 
     // create a client and receive data
     $client = new KnvbClient(get_option('knvb_api_key'), get_option('knvb_api_pathname'), get_option('knvb_api_clubname'));
-    $knvb_data = trim($client->getData('/teams', null, false));
+    $knvb_data = trim($client->getData('/teams', NULL, false));
 
     if(!empty($knvb_data)) {
       $dt = new DateTime('now');
