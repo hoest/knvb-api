@@ -70,7 +70,19 @@ class KnvbClient {
           return strcmp($dt_a, $dt_b);
         });
       }
-
+      else if( is_array( $json_data->List ) && count( $json_data->List ) > 1
+               && $json_data->List[0] instanceof stdClass
+               && property_exists($json_data->List[0], 'pouleid') && property_exists($json_data->List[0], '0')
+      ) {
+        $oPoule     = $json_data->List[0]; // $json_data->List[1] is less recent competitionseason
+        $arrNewList = array();
+        $nIt        = 0;
+        while ( property_exists( $oPoule, $nIt ) ) {
+          $arrNewList[] = $oPoule->$nIt;
+          $nIt ++;
+        }
+        $json_data->List = $arrNewList;
+      }
       return $json_data->List;
     }
 
