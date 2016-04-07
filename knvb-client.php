@@ -51,6 +51,8 @@ class KnvbClient {
     curl_setopt($ch,
                 CURLOPT_URL,
                 KnvbClient::BASEURI.$url_path.'?PHPSESSID='.$this->session_id.'&hash='.$hash.'&'.$extra);
+
+    // var_dump( KnvbClient::BASEURI.$url_path.'?PHPSESSID='.$this->session_id.'&hash='.$hash.'&'.$extra );
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
     $result = curl_exec($ch);
@@ -70,7 +72,20 @@ class KnvbClient {
           return strcmp($dt_a, $dt_b);
         });
       }
-
+      else if( is_array( $json_data->List ) && count( $json_data->List ) > 1
+        && $json_data->List[0] instanceof stdClass
+        && property_exists($json_data->List[0], 'pouleid') && property_exists($json_data->List[0], '0')
+      )
+      {
+        $oPoule = $json_data->List[0]; // $json_data->List[1] is less recent competitionseason
+        $arrNewList = array();
+        $nIt = 0;
+        while ( property_exists( $oPoule, $nIt ) ) {
+          $arrNewList[] = $oPoule->$nIt;
+          $nIt++;
+        }
+        $json_data->List = $arrNewList;
+      }
       return $json_data->List;
     }
 
@@ -78,6 +93,7 @@ class KnvbClient {
   }
 
   public function getData($url_path = '/teams', $extra = null, $useCache = true) {
+    $useCache = false;
     $wn_current = ltrim(date('W'), '0');
     $wn_previous = ltrim(date('W', strtotime('-7 days')), '0');
     $wn_next = ltrim(date('W', strtotime('+7 days')), '0');
@@ -141,6 +157,7 @@ class KnvbClient {
           }
         }
       } else {
+        $list2 = $list[0];
         $tpl->assign('data', $list);
       }
 
