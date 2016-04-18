@@ -125,3 +125,14 @@ release:
 * \templates\schedule_slider.html
 * \templates\teams.html
 * \templates\wedstrijden.html
+
+## Release
+
+1. Draai `svn update` in de KNVB-API SVN repository
+2. Pas in de GIT repo het release-nummer aan in `readme.txt` en `knvb-api-plugin.php`
+3. Draai `git commit`
+4. Kopieer de wijzigingen vanuit de GIT repo naar de SVN repo in de `trunk` map
+5. Controleer je wijzigingen in de SVN repo met `svn stat` en `svn diff`
+6. Leg de wijzigingen vast met `svn ci -m "..."`
+7. Maak een tag door eerste kopieren: `svn cp trunk tags/2.0`
+8. En daarna te committen: `svn ci -m "tagging version 2.0"`
