@@ -139,5 +139,5 @@ release:
 
 ## Bijdragen geleverd door
 
-[hoest](https://github.com/hoest/)
-[thepercival](https://github.com/thepercival)
+* [hoest](https://github.com/hoest/)
+* [thepercival](https://github.com/thepercival)
