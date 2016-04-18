@@ -136,3 +136,8 @@ release:
 6. Leg de wijzigingen vast met `svn ci -m "..."`
 7. Maak een tag door eerste kopieren: `svn cp trunk tags/2.0`
 8. En daarna te committen: `svn ci -m "tagging version 2.0"`
+
+## Bijdragen geleverd door
+
+[hoest](https://github.com/hoest/)
+[thepercival](https://github.com/thepercival)
