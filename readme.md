@@ -3,6 +3,7 @@
 ## LET OP:
 Deze plugin is niet meer up-to-date en zal niet meer vernieuwen. De KNVB heeft mijn plugin overgenomen en gezamenlijk met een leverancier een plugin op de markt gebracht voor WordPress: https://nl.wordpress.org/plugins/shortcodes-knvb-api/
 
+## Uitleg
 Met behulp van deze basis kun je in WordPress gebruik maken van de shortcodes:
 
 Toon resultaten, standen en programma's van diverse team-ID's
